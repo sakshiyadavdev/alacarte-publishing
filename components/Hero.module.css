@@ -1,0 +1,17 @@
+.hero {
+    text-align: center;
+    padding: 100px 20px 60px;
+    background: linear-gradient(to bottom, #f8f8f8, #ffffff);
+}
+
+.hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #666;
+}

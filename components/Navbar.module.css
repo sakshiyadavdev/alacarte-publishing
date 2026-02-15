@@ -1,0 +1,123 @@
+.nav {
+    background-color: #0a1f44;
+    padding: 15px 0;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    letter-spacing: 1px;
+}
+
+.links li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+.links li a:hover {
+    color: #4da6ff;
+}
+
+.navIcon {
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.activeMenu {
+    color: lightgreen !important;
+    /* text green */
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.activeMenu:hover {
+    color: darkgreen !important;
+}
+
+/* Icon should inherit text color */
+.investor {
+    color: inherit;
+}
+
+.menuIcon {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.rightSection {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.links li a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.themeItem {
+    list-style: none;
+}
+
+.themeBtn {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+    .menuIcon {
+        display: block;
+    }
+
+    .links {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        flex-direction: column;
+        background: #0a1f44;
+        width: 100%;
+        padding: 30px;
+        gap: 20px;
+        transition: 0.3s ease;
+    }
+
+    .active {
+        right: 0;
+    }
+}

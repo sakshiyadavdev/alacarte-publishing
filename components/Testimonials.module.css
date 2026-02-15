@@ -1,0 +1,67 @@
+.section {
+    padding: 120px 20px;
+    background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 36px;
+    margin-bottom: 60px;
+    font-weight: 700;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.card {
+    background: white;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s ease;
+    text-align: left;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.1);
+}
+
+.quote {
+    font-size: 22px;
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+.card p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 25px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+.user h4 {
+    margin: 0;
+    font-size: 15px;
+}
+
+.user span {
+    font-size: 13px;
+    color: #777;
+}

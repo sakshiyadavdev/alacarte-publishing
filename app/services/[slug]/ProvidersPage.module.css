@@ -1,0 +1,180 @@
+.wrapper {
+    background: #f6f7fb;
+    padding: 50px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    gap: 40px;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 260px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+.sidebar select,
+.sidebar input {
+    width: 100%;
+    margin-top: 8px;
+}
+
+/* PROVIDERS */
+.providers {
+    flex: 1;
+}
+
+.heading {
+    margin-bottom: 25px;
+    text-transform: capitalize;
+}
+
+.card {
+    background: white;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.card img {
+    width: 180px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.info {
+    flex: 1;
+}
+
+.meta {
+    font-size: 14px;
+    color: #666;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.btn {
+    background: black;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.empty {
+    margin-top: 20px;
+    color: red;
+}
+
+/* MODAL */
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: white;
+    width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 40px;
+    border-radius: 16px;
+    position: relative;
+    animation: fadeIn 0.3s ease;
+}
+
+.closeBtn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.packageGrid {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.packageCard,
+.packageCardPremium {
+    flex: 1;
+    border: 1px solid #eee;
+    padding: 25px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.packageCardPremium {
+    border: 2px solid black;
+}
+
+.packageCard h4,
+.packageCardPremium h4 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.packageCard ul,
+.packageCardPremium ul {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.packageCard button,
+.packageCardPremium button {
+    background: black;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.guarantee {
+    margin-top: 25px;
+    font-size: 14px;
+    text-align: center;
+    color: #555;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

@@ -1,0 +1,127 @@
+.footer {
+    background: var(--card-bg);
+    margin-top: 100px;
+    padding-top: 60px;
+    border-top: 3px solid var(--accent);
+}
+
+.topSection {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.topSection h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.topSection p {
+    color: var(--muted-text);
+    max-width: 600px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.newsletter {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.newsletter input {
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-color);
+    width: 250px;
+}
+
+.newsletter button {
+    background: var(--accent);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.newsletter button:hover {
+    opacity: 0.9;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.grid h4 {
+    margin-bottom: 15px;
+}
+
+.grid ul {
+    list-style: none;
+}
+
+.grid li {
+    margin-bottom: 10px;
+    color: var(--muted-text);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.grid li:hover {
+    color: var(--accent);
+}
+
+.social {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social a {
+    width: 40px;
+    height: 40px;
+    background: #ffffff20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: black;
+    transition: 0.3s ease;
+    text-decoration: none;
+}
+
+.social a:hover {
+    background: #ff6b6b;
+    color: white;
+    transform: translateY(-3px);
+}
+
+.social div {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.social div:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.bottom {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 13px;
+    border-top: 1px solid var(--border-color);
+    color: var(--muted-text);
+}

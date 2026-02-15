@@ -1,0 +1,58 @@
+export const services = [
+    {
+        title: "Book Tour/Signing Management",
+        slug: "book-tour-signing",
+        description: "Complete event planning and coordination for book tours.",
+        providers: 3,
+        priceRange: "$2,200 - $3,000",
+    },
+    {
+        title: "Printing and Distribution",
+        slug: "printing-distribution",
+        description: "High-quality book printing and worldwide distribution.",
+        providers: 3,
+        priceRange: "$2,800 - $3,500",
+    },
+    {
+        title: "Book Promotion and Marketing",
+        slug: "book-promotion-marketing",
+        description: "Strategic marketing campaigns to maximize visibility.",
+        providers: 2,
+        priceRange: "$3,500 - $4,000",
+    },
+    {
+        title: "Book Cover Design and Formatting",
+        slug: "cover-design-formatting",
+        description: "Professional cover design & formatting services.",
+        providers: 3,
+        priceRange: "$2,200 - $2,800",
+    },
+    {
+        title: "Editing and Copyediting",
+        slug: "editing-copyediting",
+        description: "Comprehensive editing for grammar and clarity.",
+        providers: 3,
+        priceRange: "$2,500 - $3,000",
+    },
+    {
+        title: "ISBN and Library Assignment",
+        slug: "isbn-library-assignment",
+        description: "Official ISBN registration services.",
+        providers: 2,
+        priceRange: "$1,500 - $1,800",
+    },
+    {
+        title: "Infomercial Creation Services",
+        slug: "infomercial-creation",
+        description: "Professional promotional video production.",
+        providers: 2,
+        priceRange: "$4,500 - $5,000",
+    },
+    {
+        title: "Publishing Coaching Services",
+        slug: "publishing-coaching",
+        description: "One-on-one expert publishing guidance.",
+        providers: 3,
+        priceRange: "$3,000 - $3,500",
+    },
+];

@@ -1,0 +1,253 @@
+.wrapper {
+    padding-bottom: 80px;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 100px 20px 80px;
+    background: linear-gradient(to bottom, var(--card-bg), transparent);
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    max-width: 600px;
+    margin: auto;
+    color: var(--muted-text);
+    margin-bottom: 25px;
+}
+
+.primaryBtn {
+    background: var(--accent);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.primaryBtn:hover {
+    transform: translateY(-3px);
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    padding: 0 40px;
+    margin-top: 40px;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.icon {
+    font-size: 28px;
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+.price {
+    margin: 15px 0;
+    font-weight: 600;
+}
+
+.secondaryBtn {
+    background: transparent;
+    border: 1px solid var(--accent);
+    padding: 8px 20px;
+    border-radius: 6px;
+    color: var(--accent);
+    transition: 0.3s;
+}
+
+.secondaryBtn:hover {
+    background: var(--accent);
+    color: white;
+}
+
+/* WHY SECTION */
+/* WHY SECTION */
+.why {
+    margin-top: 100px;
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f0f4f8, #ffffff);
+    border-radius: 20px;
+}
+
+.why h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.subtitle {
+    color: var(--muted-text);
+    font-size: 16px;
+    margin-bottom: 50px;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.featureCard {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 18px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.featureCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+}
+
+.featureIcon {
+    font-size: 36px;
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.featureCard h4 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.featureCard p {
+    font-size: 14px;
+    color: var(--muted-text);
+    line-height: 1.6;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+    margin-top: 35px;
+}
+
+.card {
+    background: white;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+    font-size: 28px;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.card h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottom span {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.bottom button {
+    background: black;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.bottom button:hover {
+    background: #333;
+    opacity: 0.9;
+}
+
+.button {
+    padding: 10px;
+    border: none;
+    background: var(--accent);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+.description {
+    color: var(--muted-text);
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-size: 13px;
+    border-top: 1px solid var(--border-color);
+    color: var(--muted-text);
+    padding-top: 10px;
+}
+
+.providers {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.price {
+    font-weight: 500;
+}
+
+.icon {
+    color: var(--accent);
+}
