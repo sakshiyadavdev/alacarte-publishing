@@ -1,10 +1,11 @@
 "use client";
-
+export const dynamic = 'force-dynamic'; 
 import { useSearchParams } from "next/navigation";
 import styles from "./Booking.module.css";
 
 export default function BookingPage() {
     const searchParams = useSearchParams();
+    const date = searchParams.get("date");
 
     const provider = searchParams.get("provider");
     const packageName = searchParams.get("package");
