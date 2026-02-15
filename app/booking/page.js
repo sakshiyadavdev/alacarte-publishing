@@ -1,7 +1,14 @@
 // /booking/page.js
-export const dynamic = "force-dynamic"; 
-import BookingClient from "./BookingClient"; 
+"use client"; // optional, but safe
+import { Suspense } from "react";
+import BookingClient from "./BookingClient";
+
+export const dynamic = "force-dynamic";
 
 export default function BookingPage() {
-    return <BookingClient />; 
+    return (
+        <Suspense fallback={<div>Loading booking...</div>}>
+            <BookingClient />
+        </Suspense>
+    );
 }
