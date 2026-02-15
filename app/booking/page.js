@@ -3,6 +3,8 @@
 import { useSearchParams } from "next/navigation";
 import styles from "./Booking.module.css";
 
+export const dynamic = "force-dynamic"; 
+
 export default function BookingPage() {
     const searchParams = useSearchParams();
     const date = searchParams.get("date");
