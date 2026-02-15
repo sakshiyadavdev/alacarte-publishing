@@ -22,7 +22,7 @@ const inter = Inter({
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="en" className={`${playfair.className} ${inter.className}`}>
       <body>
         <ClientLayout>
           {children}
