@@ -1,22 +1,22 @@
-const BookingSchema = new mongoose.Schema({
-    provider: String,
-    packageName: String,
-    duration: String,
-    price: Number,
+import { NextResponse } from "next/server";
+import { connectDB } from "@/lib/connectDB";
+import Booking from "@/models/Booking";
 
-    name: String,
-    email: String,
-    phone: String,
-    location: String,
+export async function POST(req) {
+    try {
+        await connectDB(); // DB connect inside function (IMPORTANT)
 
-    website: String,
-    bookPage: String,
-    goodreads: String,
-    twitter: String,
+        const data = await req.json(); // request body read correctly
 
-    status: {
-        type: String,
-        default: "pending", // 🔥 important
+        const newBooking = await Booking.create(data);
+
+        return NextResponse.json(newBooking, { status: 201 });
+
+    } catch (error) {
+        console.error("Booking Error:", error);
+        return NextResponse.json(
+            { error: error.message },
+            { status: 500 }
+        );
     }
-
-}, { timestamps: true });
+}
