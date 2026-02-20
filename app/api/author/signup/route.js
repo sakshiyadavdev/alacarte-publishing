@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
-import Author from "@/modals/Author";
+import Author from "@/models/Author";
 import bcrypt from "bcryptjs";
 
 export async function POST(req) {
@@ -9,7 +9,6 @@ export async function POST(req) {
 
         const body = await req.json();
 
-        // Check password match
         if (body.password !== body.confirmPassword) {
             return NextResponse.json(
                 { message: "Passwords do not match" },
@@ -17,7 +16,6 @@ export async function POST(req) {
             );
         }
 
-        // Check existing user
         const existingUser = await Author.findOne({
             $or: [{ email: body.email }, { username: body.username }],
         });
@@ -29,23 +27,25 @@ export async function POST(req) {
             );
         }
 
-        // Hash password
-        const hashedPassword = await bcrypt.hash(body.password, 10);
+        const { confirmPassword, agree, password, ...safeData } = body;
+
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         const newAuthor = await Author.create({
-            ...body,
+            ...safeData,
             password: hashedPassword,
         });
 
         return NextResponse.json(
-            { message: "Account created successfully", data: newAuthor },
+            { message: "Account created successfully" },
             { status: 201 }
         );
+
     } catch (error) {
         console.error("Signup Error:", error);
 
         return NextResponse.json(
-            { message: error.message },
+            { message: "Server error" },
             { status: 500 }
         );
     }

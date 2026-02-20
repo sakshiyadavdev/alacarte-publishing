@@ -1,50 +1,36 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 import styles from "./ProvidersPage.module.css";
 
-const providersData = [
-    {
-        name: "Book Tour Experts",
-        rating: 5,
-        location: "New York, NY",
-        phone: "+1 (555) 123-4567",
-        price: 2800,
-        image:
-            "https://images.unsplash.com/photo-1512820790803-83ca734da794",
-    },
-    {
-        name: "Author Tour Solutions",
-        rating: 4.5,
-        location: "Chicago, IL",
-        phone: "+1 (555) 456-7890",
-        price: 2400,
-        image:
-            "https://images.unsplash.com/photo-1512820790803-83ca734da794",
-    },
-    {
-        name: "Literary Events Pro",
-        rating: 4,
-        location: "Los Angeles, CA",
-        phone: "+1 (555) 987-6543",
-        price: 1900,
-        image:
-            "https://images.unsplash.com/photo-1512820790803-83ca734da794",
-    },
-];
+export default function ProvidersPage() {
 
-export default function ProvidersPage({ params }) {
+    const { slug } = useParams();  
     const router = useRouter();
-    const slug = params?.slug || "service";
-    const title = slug.replace(/-/g, " ");
 
-    const [maxPrice, setMaxPrice] = useState(3000);
+
+    const [service, setService] = useState(null);
+    const [maxPrice, setMaxPrice] = useState(5000);
     const [rating, setRating] = useState("all");
     const [location, setLocation] = useState("all");
-
     const [selectedProvider, setSelectedProvider] = useState(null);
 
-    const filteredProviders = providersData.filter((p) => {
+    // 🔥 Fetch Selected Service Data
+    useEffect(() => {
+        if (!slug) return;
+
+        fetch("/api/services")
+            .then((res) => res.json())
+            .then((data) => {
+                const selected = data.find((s) => s.slug === slug);
+                setService(selected);
+            })
+            .catch((err) => console.error(err));
+    }, [slug]);
+
+    if (!service) return <p>Loading...</p>;
+
+    const filteredProviders = service.providers.filter((p) => {
         const priceMatch = p.price <= maxPrice;
         const ratingMatch =
             rating === "all" ? true : p.rating >= Number(rating);
@@ -68,11 +54,11 @@ export default function ProvidersPage({ params }) {
                     </div>
                     <input
                         type="range"
-                        min="1000"
-                        max="3000"
+                        min="100"
+                        max="5000"
                         step="100"
                         value={maxPrice}
-                        onChange={(e) => setMaxPrice(e.target.value)}
+                        onChange={(e) => setMaxPrice(Number(e.target.value))}
                     />
 
                     <label>Minimum Rating</label>
@@ -86,20 +72,23 @@ export default function ProvidersPage({ params }) {
                     <label>Location</label>
                     <select onChange={(e) => setLocation(e.target.value)}>
                         <option value="all">All Locations</option>
-                        <option value="New York, NY">New York, NY</option>
-                        <option value="Chicago, IL">Chicago, IL</option>
-                        <option value="Los Angeles, CA">Los Angeles, CA</option>
+                        {[...new Set(service.providers.map(p => p.location))]
+                            .map((loc, i) => (
+                                <option key={i} value={loc}>
+                                    {loc}
+                                </option>
+                            ))}
                     </select>
                 </aside>
 
                 {/* PROVIDERS */}
                 <main className={styles.providers}>
                     <h2 className={styles.heading}>
-                        {title} Providers
+                        {service.title} Providers
                     </h2>
 
-                    {filteredProviders.map((p, i) => (
-                        <div key={i} className={styles.card}>
+                    {filteredProviders.map((p) => (
+                        <div key={p._id} className={styles.card}>
                             <img src={p.image} alt={p.name} />
 
                             <div className={styles.info}>
@@ -143,55 +132,42 @@ export default function ProvidersPage({ params }) {
                         </h2>
 
                         <p className={styles.modalSub}>
-                            Choose from available packages for {title} services
+                            Choose from available packages for {service.title}
                         </p>
 
                         <div className={styles.packageGrid}>
 
-                            {/* BASIC */}
-                            <div className={styles.packageCard}>
-                                <h3>Basic Package</h3>
-                                <p>2-3 weeks</p>
-                                <h4>$2,500</h4>
-                                <span>one-time</span>
-
-                                <ul>
-                                    <li>3-city book tour</li>
-                                    <li>Venue booking and coordination</li>
-                                    <li>Basic event promotion</li>
-                                    <li>Post-event report</li>
-                                    <li>Email support</li>
-                                </ul>
-
-                                <button>Select Package</button>
-                            </div>
-
-                            {/* PREMIUM */}
-                            <div className={styles.packageCardPremium}>
-                                <h3>Premium Package</h3>
-                                <p>4-6 weeks</p>
-                                <h4>$5,000</h4>
-                                <span>one-time</span>
-
-                                <ul>
-                                    <li>5-city book tour</li>
-                                    <li>Comprehensive marketing campaign</li>
-                                    <li>Media outreach</li>
-                                    <li>Social media promotion</li>
-                                    <li>Post-event analytics</li>
-                                    <li>Priority support</li>
-                                </ul>
-
-                                <button
-                                    onClick={() =>
-                                        router.push(
-                                            `/booking?provider=${selectedProvider.name}&package=Basic Package&price=2500&duration=2-3 weeks`
-                                        )
+                            {selectedProvider.packages.map((pkg) => (
+                                <div
+                                    key={pkg._id}
+                                    className={
+                                        pkg.type === "premium"
+                                            ? styles.packageCardPremium
+                                            : styles.packageCard
                                     }
                                 >
-                                    Select Package
-                                </button>
-                            </div>
+                                    <h3>{pkg.name}</h3>
+                                    <p>{pkg.duration}</p>
+                                    <h4>${pkg.price}</h4>
+                                    <span>one-time</span>
+
+                                    <ul>
+                                        {pkg.features.map((f, i) => (
+                                            <li key={i}>{f}</li>
+                                        ))}
+                                    </ul>
+
+                                    <button
+                                        onClick={() =>
+                                            router.push(
+                                                `/booking?provider=${selectedProvider.name}&package=${pkg.name}&price=${pkg.price}&duration=${pkg.duration}`
+                                            )
+                                        }
+                                    >
+                                        Select Package
+                                    </button>
+                                </div>
+                            ))}
 
                         </div>
 

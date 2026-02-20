@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 16px 40px;
-    background: #ffffff;
+    background: var(--card-bg);
     border-bottom: 1px solid #eaeaea;
     position: sticky;
     top: 0;

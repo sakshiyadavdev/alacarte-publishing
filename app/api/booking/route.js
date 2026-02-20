@@ -1,30 +1,22 @@
-import { connectDB } from "../../../lib/db";
-import mongoose from "mongoose";
-
 const BookingSchema = new mongoose.Schema({
+    provider: String,
+    packageName: String,
+    duration: String,
+    price: Number,
+
     name: String,
     email: String,
     phone: String,
     location: String,
-    provider: String,
-    packageName: String,
-    duration: String,
-    price: String,
-}, { timestamps: true });
 
-const Booking = mongoose.models.Booking ||
-    mongoose.model("Booking", BookingSchema);
+    website: String,
+    bookPage: String,
+    goodreads: String,
+    twitter: String,
 
-export async function POST(req) {
-    try {
-        await connectDB();
-        const data = await req.json();
-
-        const newBooking = new Booking(data);
-        await newBooking.save();
-
-        return Response.json({ message: "Booking successful" });
-    } catch (error) {
-        return Response.json({ error: "Booking failed" }, { status: 500 });
+    status: {
+        type: String,
+        default: "pending", // 🔥 important
     }
-}
+
+}, { timestamps: true });

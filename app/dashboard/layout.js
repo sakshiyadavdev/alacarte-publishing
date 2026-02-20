@@ -7,7 +7,7 @@ export default function DashboardLayout({ children }) {
             <main
                 style={{
                     padding: "40px",
-                    background: "#f5f6f8",
+                    background: "var(--bg-color)",  // ✅ dynamic
                     minHeight: "100vh"
                 }}
             >

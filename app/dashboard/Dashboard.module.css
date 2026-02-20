@@ -6,7 +6,7 @@
 
 /* Welcome */
 .welcomeBox {
-    background: white;
+    background: var(--card-bg);
     padding: 30px;
     border-radius: 12px;
     display: flex;
@@ -38,13 +38,6 @@
     gap: 20px;
 }
 
-.statCard {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-}
-
 .statCard h3 {
     font-size: 26px;
     margin-bottom: 8px;
@@ -56,7 +49,7 @@
 }
 
 .serviceCard {
-    background: white;
+    background: var(--card-bg);
     padding: 25px;
     border-radius: 12px;
     margin-top: 20px;
@@ -102,7 +95,7 @@
 
 /* Quick Actions */
 .quickActions {
-    background: white;
+    background: var(--card-bg);
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
@@ -117,7 +110,7 @@
 
 
 .statCard {
-    background: white;
+    background: var(--card-bg);
     padding: 20px;
     border-radius: 12px;
     display: flex;
@@ -181,7 +174,7 @@
 }
 
 .quickCard {
-    background: #f9f9f9;
+    background: var(--card-bg);
     padding: 25px;
     border-radius: 12px;
     text-align: center;
@@ -206,10 +199,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 24px;
-    border: 1px solid #e5e5e5;
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     margin-top: 20px;
-    background: #fff;
+    background: var(--card-bg);
     transition: 0.3s ease;
 }
 
@@ -236,7 +229,7 @@
 .serviceType {
     font-weight: 400;
     font-size: 14px;
-    color: #777;
+    color: var(--muted-text);
     margin-left: 8px;
 }
 
@@ -287,7 +280,7 @@
 
 .dateRow {
     font-size: 14px;
-    color: #555;
+    color: var(--muted-text);
     margin-bottom: 6px;
 }
 
@@ -308,4 +301,92 @@
 
 .linkBtn:hover {
     text-decoration: underline;
+}
+
+.addServiceBtn {
+    background-color: #4caf50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.addServiceBtn:hover {
+    background-color: #45a049;
+}
+
+/* Modal overlay */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+
+/* Close button */
+.closeModalBtn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* AddServiceModal.module.css */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 16px;
+    /* important for small screens */
+    box-sizing: border-box;
+}
+
+.modalContent {
+    background: var(--card-bg);
+    color: var(--text-color);
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    /* scroll if content too tall */
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+/* Close button */
+.closeBtn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+}
+
+.image {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
 }

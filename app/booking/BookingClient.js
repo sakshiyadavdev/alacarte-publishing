@@ -1,37 +1,71 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 import styles from "./Booking.module.css";
 
 export default function BookingClient() {
+
     const searchParams = useSearchParams();
+
     const provider = searchParams.get("provider") || "N/A";
     const packageName = searchParams.get("package") || "N/A";
     const price = searchParams.get("price") || 0;
     const duration = searchParams.get("duration") || "N/A";
 
+    const [loading, setLoading] = useState(false);
+
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        location: "",
+        website: "",
+        bookPage: "",
+        goodreads: "",
+        twitter: "",
+    });
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
+
     const handleBooking = async () => {
+        if (!formData.name || !formData.email || !formData.phone) {
+            alert("Please fill required fields.");
+            return;
+        }
+
         try {
-            const res = await fetch("/api/booking", {
+            setLoading(true);
+
+            const res = await fetch("/api/create-checkout-session", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    name: "John Smith",
-                    email: "john@example.com",
-                    phone: "123456",
-                    location: "NY",
+                    ...formData,
                     provider,
                     packageName,
                     duration,
-                    price,
+                    price: Number(price),
                 }),
             });
 
             const data = await res.json();
-            alert(data.message);
+
+            if (res.ok) {
+                window.location.href = data.url; 
+            } else {
+                alert("Payment failed");
+            }
+
         } catch (err) {
-            console.error("Booking error:", err);
-            alert("Something went wrong. Please try again.");
+            console.error(err);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -47,20 +81,40 @@ export default function BookingClient() {
                         <h3>Your Profile Information</h3>
                         <div className={styles.grid}>
                             <div className={styles.field}>
-                                <label>Name</label>
-                                <input defaultValue="John Smith" />
+                                <label>Name *</label>
+                                <input
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                />
                             </div>
+
                             <div className={styles.field}>
-                                <label>Email</label>
-                                <input defaultValue="john.smith@example.com" />
+                                <label>Email *</label>
+                                <input
+                                    name="email"
+                                    type="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                />
                             </div>
+
                             <div className={styles.field}>
-                                <label>Phone</label>
-                                <input defaultValue="+1 (555) 123-4567" />
+                                <label>Phone *</label>
+                                <input
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                />
                             </div>
+
                             <div className={styles.field}>
                                 <label>Location</label>
-                                <input defaultValue="New York, NY" />
+                                <input
+                                    name="location"
+                                    value={formData.location}
+                                    onChange={handleChange}
+                                />
                             </div>
                         </div>
                     </div>
@@ -70,19 +124,38 @@ export default function BookingClient() {
                         <div className={styles.grid}>
                             <div className={styles.field}>
                                 <label>Author Website</label>
-                                <input placeholder="https://yourwebsite.com" />
+                                <input
+                                    name="website"
+                                    value={formData.website}
+                                    onChange={handleChange}
+                                />
                             </div>
+
                             <div className={styles.field}>
                                 <label>Book Page</label>
-                                <input placeholder="Book landing page URL" />
+                                <input
+                                    name="bookPage"
+                                    value={formData.bookPage}
+                                    onChange={handleChange}
+                                />
                             </div>
+
                             <div className={styles.field}>
                                 <label>Goodreads</label>
-                                <input placeholder="Goodreads profile link" />
+                                <input
+                                    name="goodreads"
+                                    value={formData.goodreads}
+                                    onChange={handleChange}
+                                />
                             </div>
+
                             <div className={styles.field}>
                                 <label>Twitter</label>
-                                <input placeholder="Twitter profile link" />
+                                <input
+                                    name="twitter"
+                                    value={formData.twitter}
+                                    onChange={handleChange}
+                                />
                             </div>
                         </div>
                     </div>
@@ -95,13 +168,20 @@ export default function BookingClient() {
                         <p><strong>Service Provider:</strong> {provider}</p>
                         <p><strong>Package:</strong> {packageName}</p>
                         <p><strong>Duration:</strong> {duration}</p>
+
                         <div className={styles.totalBox}>
                             <span>Total Amount</span>
                             <h2>${price}</h2>
                         </div>
-                        <button className={styles.paymentBtn} onClick={handleBooking}>
-                            Proceed to Payment
+
+                        <button
+                            className={styles.paymentBtn}
+                            onClick={handleBooking}
+                            disabled={loading}
+                        >
+                            {loading ? "Processing..." : "Proceed to Payment"}
                         </button>
+
                         <p className={styles.secureNote}>
                             🔒 You will be redirected to our secure payment gateway
                         </p>

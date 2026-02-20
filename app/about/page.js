@@ -77,7 +77,7 @@ export default function About() {
                 >
                     {/* <FaUserFriends size={100} color="#ffb400" /> */}
                     <Image
-                        src="/images/approach.jpg"
+                        src="/images/approach.jpg" 
                         alt="Our Mission"
                         width={400}   // width adjust karein
                         height={300}  // height adjust karein

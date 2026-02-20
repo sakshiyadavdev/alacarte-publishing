@@ -37,12 +37,20 @@ export default function AuthorSignup() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (formData.password !== formData.confirmPassword) {
+            alert("Passwords do not match");
+            return;
+        }
+
+        if (!formData.agree) {
+            alert("You must agree to Terms");
+            return;
+        }
+
         try {
             const res = await fetch("/api/author/signup", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
             });
 
@@ -51,8 +59,8 @@ export default function AuthorSignup() {
             if (!res.ok) throw new Error(data.message);
 
             alert("Account Created Successfully ✅");
+
         } catch (error) {
-            console.error("Signup Error:", error);
             alert(error.message);
         }
     };
@@ -75,7 +83,7 @@ export default function AuthorSignup() {
         <div className={styles.wrapper}>
             <h1 className={styles.title}>Create Your Author Account</h1>
 
-            <form className={styles.form}>
+            <form className={styles.form} onSubmit={handleSubmit}>
                 {/* Account Credentials */}
                 <div className={styles.section}>
                     <h2>Account Credentials</h2>
@@ -145,9 +153,8 @@ export default function AuthorSignup() {
                 </div>
 
                 <button
-                    type="button"
+                    type="submit"
                     className={styles.button}
-                    onClick={handleSubmit}
                 >
                     Create Account
                 </button>

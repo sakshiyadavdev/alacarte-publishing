@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
-import Investor from "@/modals/Investor";
+import Investor from "@/models/Investor";
 
 export async function POST(req) {
     try {
