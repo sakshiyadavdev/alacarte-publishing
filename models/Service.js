@@ -26,9 +26,7 @@ const ServiceSchema = new mongoose.Schema({
     description: String,
     icon: String,
     priceRange: String,
-    providers: [ProviderSchema], // ⚠ yahi important hai
+    providers: [ProviderSchema],
 });
 
-const Service = mongoose.modals.Service || mongoose.modal("Service", ServiceSchema);
-
-export default Service;
+export default mongoose.models.Service || mongoose.model("Service", ServiceSchema);
