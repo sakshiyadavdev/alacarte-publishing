@@ -4,8 +4,7 @@ import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 import Author from "@/models/Author";
 import { connectDB } from "@/lib/db";
-import path from "path";
-import fs from "fs/promises";
+import cloudinary from "@/lib/cloudinary";
 
 export async function POST(req) {
     try {
@@ -42,17 +41,16 @@ export async function POST(req) {
             const bytes = await file.arrayBuffer();
             const buffer = Buffer.from(bytes);
 
-            const uploadDir = path.join(process.cwd(), "public/uploads");
+            const uploadResult = await new Promise((resolve, reject) => {
+                cloudinary.uploader
+                    .upload_stream({ folder: "services" }, (error, result) => {
+                        if (error) reject(error);
+                        else resolve(result);
+                    })
+                    .end(buffer);
+            });
 
-            // auto create folder if not exists
-            await fs.mkdir(uploadDir, { recursive: true });
-
-            const fileName = Date.now() + "-" + file.name;
-            const filePath = path.join(uploadDir, fileName);
-
-            await fs.writeFile(filePath, buffer);
-
-            imagePath = `/uploads/${fileName}`;
+            imagePath = uploadResult.secure_url;
         }
 
         // ✅ Ensure services array exists
