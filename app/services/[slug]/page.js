@@ -5,7 +5,7 @@ import styles from "./ProvidersPage.module.css";
 
 export default function ProvidersPage() {
 
-    const { slug } = useParams();  
+    const { slug } = useParams();
     const router = useRouter();
 
 
@@ -14,6 +14,7 @@ export default function ProvidersPage() {
     const [rating, setRating] = useState("all");
     const [location, setLocation] = useState("all");
     const [selectedProvider, setSelectedProvider] = useState(null);
+    const [expanded, setExpanded] = useState(null);
 
     // 🔥 Fetch Selected Service Data
     useEffect(() => {
@@ -93,10 +94,28 @@ export default function ProvidersPage() {
 
                             <div className={styles.info}>
                                 <h3>{p.name}</h3>
-                                <p className={styles.meta}>
-                                    ⭐ {p.rating} | 📍 {p.location}
+                                <p className={styles.detail}>
+                                    {expanded === p.name
+                                        ? p.detail
+                                        : `${p.detail?.slice(0, 120) || ""}...`}
+
+                                    {p.detail && (
+                                        <span
+                                            className={styles.showMore}
+                                            onClick={() =>
+                                                setExpanded(expanded === p.name ? null : p.name)
+                                            }
+                                        >
+                                            {expanded === p.name ? " Show Less" : " Read More"}
+                                        </span>
+                                    )}
                                 </p>
-                                <p className={styles.price}>${p.price}</p>
+                                <div className={styles.metaRow}>
+                                    <span>⭐ {p.rating}</span> |
+                                    <span>📍 {p.location}</span> |
+                                    <span>📞 {p.phone}</span>
+                                </div>
+                                {/* <p className={styles.price}>${p.price}</p> */}
 
                                 <button
                                     className={styles.btn}

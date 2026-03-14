@@ -62,9 +62,32 @@
     flex: 1;
 }
 
-.meta {
+.contact {
     font-size: 14px;
     color: #666;
+    margin-top: 4px;
+}
+
+.metaRow {
+    display: flex;
+    gap: 15px;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.detail {
+    font-size: 14px;
+    color: #767575;
+    margin: 6px 0;
+}
+
+.showMore {
+    color: #2563eb;
+    cursor: pointer;
+    font-weight: 500;
+    margin-left: 5px;
 }
 
 .price {

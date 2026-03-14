@@ -12,6 +12,9 @@ import {
     FaEdit,
     FaBarcode,
     FaUserTie,
+    FaVideo,
+    FaPaintBrush,
+    FaGraduationCap,
 } from "react-icons/fa";
 
 const iconMap = {
@@ -22,6 +25,10 @@ const iconMap = {
     FaEdit: <FaEdit />,
     FaBarcode: <FaBarcode />,
     FaUserTie: <FaUserTie />,
+    FaVideo: <FaVideo />,
+    FaPaintBrush: <FaPaintBrush/>,
+    FaGraduationCap: <FaGraduationCap />
+
 };
 
 export default function ServicesSection() {
